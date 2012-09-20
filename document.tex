@@ -341,7 +341,7 @@ S_{XX}(e^{j\omega},\xi) &= \lim_{M \rightarrow \infty} \frac{\E\left[\left|X_N\l
 \text{mit}\notag\\
 X_N(e^{j\omega},\xi) &=\sum\limits_{n=-M}^M x_N(n,\xi) e^{-j\omega n}
 \end{align}
-\subsubsection{Eigenschaften der PSD}
+\subsubsection{Eigenschaften der Leistungsspektraldichte}
 \begin{subequations}
 \begin{alignat}{3}
 S_{XX}(e^{j \omega})^*&=S_{XX}(e^{j \omega}) \quad &\text{mit}\quad X(n)\in \mathbb{C} \\
@@ -360,7 +360,16 @@ P_{XX}&=\int\limits_{-\pi}^\pi S_{XX}(e^{j\omega}) \frac{d\omega}{2\pi} = r_{XX}
 \begin{equation}
 S_{XY}(e^{j\omega},\xi) = \lim_{M \rightarrow \infty} \frac{\E\left[X_N\left(e^{j\omega},\xi\right)Y_N\left(e^{j\omega},\xi\right)^*\right]}{2M+1}\\
 \end{equation}
-
+\subsubsection{Eigenschaften der Kreuzleistungsdichte}
+\begin{subequations}
+\begin{alignat}{3}
+S_{XY}(e^{j \omega})^*&=S_{YX}(e^{j \omega}) \quad &\text{mit}\quad X(n),Y(n)\in \mathbb{C} \\
+S_{XY}(e^{j \omega})^*&=S_{YX}(-e^{j \omega}) \quad &\text{mit}\quad X(n),Y(n)\in \mathbb{R} \\
+\mathfrak{Re}\{S_{XY}(e^{j \omega})\}&\text{ und }\mathfrak{Re}\{S_{YX}(e^{j \omega})\} &\text{sind gerade, wenn } X(n),Y(n) \in \mathbb{R}\\
+\mathfrak{Im}\{S_{XY}(e^{j \omega})\}&\text{ und }\mathfrak{Im}\{S_{YX}(e^{j \omega})\} &\text{sind ungerade, wenn } X(n),Y(n) \in \mathbb{R}\\
+S_{XY}(e^{j \omega})&=S_{YX}(e^{j \omega}) =0 \quad &\text{wenn $X(n)$ und $Y(n)$ orthogonal (\ref{ortho})} 
+\end{alignat}
+\end{subequations}
 \subsection{Durchschnittliche Kreuzleistung zweier Zufallsprozesse}
 \begin{equation}
 P_{XY}=\int\limits_{-\pi}^\pi S_{XY}(e^{j\omega}) \frac{d\omega}{2\pi}
@@ -381,6 +390,20 @@ r_{XX}(\kappa)&=\mathcal{F}^{-1}\{S_{XX}(e^{j\omega})\}=\int\limits_{-\pi}^\pi S
 \begin{equation}
 S_{XY}(e^{j\omega})=\mathcal{F}\{r_{XY}(\kappa)\}=\sum\limits_{k=-\infty}^\infty r_{XY}(\kappa) e^{-k\omega \kappa}
 \end{equation}
+
+
+\section{Kohärenz (coherence)} \label{coherence}
+\begin{equation}
+	\rm{Coh}_{XY}(e^{j\omega})=\frac{\left|S_{XY}(e^{j\omega})\right|^2}{S_{XX}(e^{j\omega})S_{YY}(e^{j\omega})}
+\end{equation}
+\subsection{Eigenschaften der Kohärenz}
+Die Kohärenz zwischen den Zufallsprozessen $X(n)$ und $Y(n)$ besagt, wie gut $X$ zu $Y$ bei einer gegebenen Frequenz $\omega$ korrespondiert.
+\begin{equation}
+0\leq\rm{Coh}_{XY}(e^{j\omega})\leq 1
+\end{equation}
+
+
+
 \chapter{Sonstiges}
 \section{Spezielle Funktionen}
 \subsection{Gaussian white noise process}
