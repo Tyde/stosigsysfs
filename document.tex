@@ -1,34 +1,112 @@
 %%This is a very basic article template.
 %%There is just one section and two subsections.
 
-\documentclass[accentcolor=tud9c,10pt,nochapname]{tudreport}
+\documentclass[accentcolor=tud9c,11pt,nochapname]{tudreport}
 \usepackage{mathtools}
+\usepackage[pdftex,bookmarks=true]{hyperref}
 \usepackage{ngerman}
-\DeclareMathSizes{10}{12}{8}{8}
+\DeclareMathSizes{11}{11}{8}{8}
 \begin{document}
 
-
-
+\def\Var{{\rm Var}\,}
+\def\E{{\rm E}\,}
 
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\author{Daniel Thiem}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de}
+
 \maketitle
 
+
+
+
 \tableofcontents
+
+
 \numberwithin{equation}{chapter}
+\section*{Vorwort}
+Fehler und Verbesserungen bitte an studium@daniel-thiem.de senden.
 \chapter{Kombinatorik \& reine Stochastik}
 
 \section{Wahrscheinlichkeitsdichtefunktion}
+Sei $F_X(x)$ die Verteilungsfunktion der Zufallsvariablen $X$
 \begin{equation}
-	f(x) = P(X=x)
+	f(x) = \frac{dF_X(x)}{dx}
+\end{equation}
+
+\subsection{Eigenschaften der Wahrscheinlichkeitsdichtefunktion}
+\begin{subequations}
+\begin{align}
+	f_X(x)&\geq 0 \\
+	f_X(x) &= P(X=x)
+\end{align}
+\end{subequations}
+
+\subsection{Berechnung bei Abhängigkeit zu anderer Zufallsvariablen}
+Sei $Y=g(X)$ und die Wahrscheinlichkeitsdichtefunktion von Y, $f_y(t)$, sei gesucht, während die Wahrscheinlichkeitsdichtefunktion $f_x(t)$ gegeben ist,
+\begin{equation}
+f_y(t)=f_x(g^{-1}(t))\left|\frac{d}{dy}g^{-1}\right|
 \end{equation}
 
 \section{Verteilungsfunktion}
+$f(t)$ sei die Wahrscheinlichkeitsdichtefunktion der Zufallsvariablen $X$
 \begin{equation}
 	F(x) = P(X\leq x) = \int\limits_{-\infty}^x f(t)dt 
 \end{equation}
+\subsection{Eigenschaften der Verteilungsfunktion}
+\begin{subequations}
+\begin{align}
+0 \leq F_X(x) &\leq 1 \\
+F_X(\infty)&=1\\
+F_X(-\infty)&=0 \\
+F_X(x) \text{ist rechtsstetig, d.h. } \notag\\
+\lim_{\epsilon \rightarrow 0} F_X(x+\epsilon) &= F_X(x)
+\end{align}
+\end{subequations}
+\subsection{Wahrscheinlichkeitsrechnung mittels der Verteilungsfunktion}
+\begin{subequations}
+\begin{align}
+F(a-) &= \lim_{\epsilon \rightarrow 0}  F_X(x-\epsilon)\\
+P(X=a) &= F(a)-F(a-) \\
+P(a<X\leq b) &=F(b)-F(a)\\
+P(a\leq X<b) &=F(b-)-F(a-)\\
+P(a\leq X\leq b) &=F(b)-F(a-)\\
+P(X>a)&=1-F(a)
+\end{align}
+\end{subequations}
+\section{Verteilungen}
+
+
+\subsection{Normalverteilung}
+\begin{equation}
+f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2} \left(\frac{t-\mu}{\sigma}\right)^2}
+\end{equation}
+
+\subsection{Rechteckverteilung}
+\begin{align}
+f(t)&=\begin{cases}
+\frac{1}{b-a} & a<t<b \\
+0 & \text{sonst}
+\end{cases} \\
+F(x) &= \begin{cases}
+0 & x \leq a \\
+\frac{x-a}{b-a} & x \in (a,b] \\
+1 & x > b
+\end{cases}
+\end{align}
+
+\subsection{Exponentialverteilung}
+\begin{align}
+f(t)&=\begin{cases}
+0 & t<0 \\
+\lambda e^{-\lambda t} & t\geq 0
+\end{cases} \\
+F(x) &= \begin{cases}
+0 & x < 0 \\
+1-e^{-\lambda t} & x\geq 0
+\end{cases}
+\end{align}
 
 \section{Formel von Bayes}
 
@@ -40,39 +118,49 @@
 
 
 \section{Erwartungswerte}
-\subsection{Allgmeine Erwartungswertberechnung}
-
+\subsection{Erwartungswertberechnung}
+\subsubsection{Allgemein}
 
 Sei $f(x)$ die Wahrscheinlichkeitsdichtefunktion von $X$
 
 \begin{equation}
-	E(X) = \int\limits_{-\infty}^\infty x \cdot f(x) dx
+	\E(X) = \int\limits_{-\infty}^\infty x \cdot f(x) dx
 \end{equation}
 
-\subsection{Erweiterte Erwartungswertberechnung}
+\subsubsection{Erweitert}
 
 Sei $Y=g(X)$ und $f(x)$ die Wahrscheinlichkeitsdichtefunktion von $X$
 
 \begin{equation}
-	E[Y] = E[g(X)] =  \int\limits_{-\infty}^\infty g(x) \cdot f(x) dx
+	\E[Y] = \E[g(X)] =  \int\limits_{-\infty}^\infty g(x) \cdot f(x) dx
 \end{equation}
 
 \subsection{Rechenregeln für Erwartungswerte}
+Sei $A$ eine von $B$ unabhängige Zufallsvariable
 \begin{equation}
-	E[A \cdot B] = E[A] \cdot E[B]
+	\E[A \cdot B] = \E[A] \cdot \E[B]
 \end{equation}
-
+Sei $X$ eine Zufallsvariable und $a,b$ jeweils Konstanten
 \begin{equation}
-	E[aX +b] = aE[X] + b
+	\E[aX +b] = a\E[X] + b
 \end{equation}
-
-\section{Verteilungen}
-
-\subsection{Normalverteilung}
+Seien $X_i$ Zufallsvariablen
 \begin{equation}
-f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2} \left(\frac{t-\mu}{\sigma}\right)^2}
+\E\left[\sum\limits_{i=0}^n X_i\right]=\sum\limits_{i=0}^n  \E[X_i]
 \end{equation}
-
+\section{Varianz}
+\subsection{Berechnung der Varianz}
+\begin{equation}
+\Var(X)=\E(X^2)-\E(X)^2
+\end{equation}
+\subsection{Rechenregeln für Varianzen}
+\begin{equation}
+\Var(aX+b)=a^2 \Var(x)
+\end{equation}
+Seien $X_i$ Zufallsvariablen
+\begin{equation}
+\Var\left[\sum\limits_{i=0}^n X_i\right]=\sum\limits_{i=0}^n  \Var[X_i]
+\end{equation}
 \chapter{Discrete-Time-Fourier-Transformation}
 
 \section{Abtastung}
@@ -87,35 +175,43 @@ x_s(t)=\sum\limits_{n=-\infty}^\infty x_c(nT_s)\delta(t-nT_s)
 X_s(j\Omega)&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j(\Omega-\frac{2\pi k}{T_s})) \notag\\
 	&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j\Omega-kj\Omega_s) \quad \text{mit} \quad \Omega_s=\frac{2\pi}{T_s}\\
 \end{align}
-
-\subsubsection{Zusammenhang $\Omega$ und $n$}
+\section{Transformation}
+\subsection{Rücktransformation}
+\begin{align}
+x[n]&=\int\limits_{-\pi}^\pi X(e^{j\omega})e^{j\omega n}d\omega 
+\end{align}
+\subsection{Zusammenhang $\Omega$ und $n$} \label{omegaToDescrete}
 ACHTUNG: Dieser zusammenhang ist in SSS etwas anders im gegensatz zu dem Hilfsblatt von DSS
 \begin{equation}
 \omega = \Omega T_s
 \end{equation}
-
+\subsection{Berechnen einer Übertragungsfunktion im zeitdiskreten Fall}
+\begin{enumerate}
+	\item Zeitkontinuierliches $H(e^{j\omega})=\frac{Y(e^{j\omega})}{X(e^{j\omega})}$ berechnen
+	\item Formel aus (\ref{omegaToDescrete}) einsetzen, um $H(j\Omega)$ zu erreichen
+\end{enumerate}
 \chapter{Prozesse}
 
-\section{Strikte Stationarität}
+\section{Strikte Stationarität} \label{stationarystrict}
 \begin{equation}
 F_x(x_1,\dots ,x_N;n_1,\dots,n_N) = F_x(x_1,\dots ,x_N;n_1+n_0,\dots ,n_N+n_0) \quad \text{mit $N\rightarrow \infty$}
 \end{equation}
 
-\section{Second order moment function(SOMF)}
+\section{Second order moment function(SOMF)} \label{somf}
 \begin{equation}
-r_{XX}(n_1,n_2)=E[X(n_1)X(n_2)]
+r_{XX}(n_1,n_2)=\E[X(n_1)X(n_2)]
 \end{equation}
 \subsection{Stationär im weiteren Sinne} \label{stationary}
 \begin{subequations}
 \begin{align}
-E[X(n)]&=\text{const.} \\
-r_{XX}(n_1,n_2) &= r_{XX}(\kappa) = E[X(n+\kappa)\cdot X(n)] \quad \text{mit} \quad \kappa = |n_2-n_1|
+\E[X(n)]&=\text{const.} \\
+r_{XX}(n_1,n_2) &= r_{XX}(\kappa) = \E[X(n+\kappa)\cdot X(n)] \quad \text{mit} \quad \kappa = |n_2-n_1|
 \end{align}
 \end{subequations}
 \subsection{Eigenschaften der SOMF}
 \begin{subequations}
 \begin{align}
-r_{XX}(0) &= E[X(n)^2]=\sigma_X^2+\mu_x^2 \\
+r_{XX}(0) &= \E[X(n)^2]=\sigma_X^2+\mu_x^2 \\
 r_{XX}(\kappa) &= r_{XX}(-\kappa) \\
 r_{XX}(0) &\geq|r_{XX}(\kappa)| \quad ,|\kappa|>0
 \end{align}
@@ -123,7 +219,7 @@ r_{XX}(0) &\geq|r_{XX}(\kappa)| \quad ,|\kappa|>0
 
 \section{Cross-SOMF}
 \begin{equation}
-	r_{XY}(n_1,n_2) = E[X(n_1) \cdot Y(n_2)]
+	r_{XY}(n_1,n_2) = \E[X(n_1) \cdot Y(n_2)]
 \end{equation}
 
 \subsection{Gemeinsame Statonarität (joint stationary)}\label{jointstationary}
@@ -138,40 +234,169 @@ r_{XY}(-\kappa) &= r_{YX}(\kappa) \\
 |r_{XY}(\kappa)| &\leq \frac{1}{2}(r_{XX}(0)+r_{YY}(0))
 \end{align}
 \end{subequations}
-\subsection{Unkorreliertheit (uncorrelated)}
+\subsection{Unkorreliertheit (uncorrelated) anhand der Cross-SOMF}
 \begin{equation}
-	r_{XY}(\kappa)=\mu_x \cdot \mu_y
+	r_{XY}(\kappa)=\mu_x \cdot \mu_y = \E[X(n+\kappa)]\E[Y(n)]
 \end{equation}
-\subsection{Orthogonalität}
+\subsection{Orthogonalität} \label{ortho}
 \begin{equation}
 	r_{XY}(\kappa)=0
 \end{equation}
-\section{Central-SOMF}
-\begin{equation}
-c_{XX}(n+\kappa,n) = E[(X(n+\kappa)-E[X(n+\kappa)]) \cdot (X(n)-E[X(n)])]
-\end{equation}
-
-\subsection{Eigenschaften der Central-SOMF}
+\section{Kovarianz (Covariance,Central-SOMF)}
+\begin{subequations}
+\begin{align}
+c_{XX}(n+\kappa,n) &= \E[(X(n+\kappa)-\E[X(n+\kappa)]) \cdot (X(n)-\E[X(n)])] \\
+c_{XX}(n+\kappa,n) &= r_{XX}(n+\kappa,n)-\E[X(n+k)]\E[X(n)]
+\end{align}
+\end{subequations}
+\subsection{Eigenschaften der Kovarianz}
 Falls $X$ zumindest \emph{stationär im weiteren Sinne}(\ref{stationary}) ist, gilt
 \begin{equation}
-c_{XX}(\kappa)=r_{XX}(\kappa)-(E[X(n)])^2 
+c_{XX}(\kappa)=r_{XX}(\kappa)-(\E[X(n)])^2 
 \end{equation}
 
 \subsection{Überführung der Central-SOMF in die Varianz}
 \begin{equation}
-c_{XX}(0)=Var(X)
+c_{XX}(0)=\Var(X)
 \end{equation}
-\section{Kovarianz (Covariance)}
-\begin{equation}
-c_{XX}(n+\kappa,n) = r_{XX}(n+\kappa,n)-E[X(n+k)]E[X(n)]
-\end{equation}
+\section{Kreuz-Kovarianz (Cross-covariance)}
+\begin{subequations}
+\begin{align}
+c_{XY}(n+\kappa,n) &= \E[(X(n+\kappa)-\E[X(n+\kappa)]) \cdot (Y(n)-\E[Y(n)])] \\
+c_{XY}(n+\kappa,n) &= r_{XY}(n+\kappa,n)-\E[X(n+k)]\E[Y(n)]
+\end{align}
+\end{subequations}
 
-\subsection{Eigenschaften der Kovarianz}
+\subsection{Eigenschaften der Kreuzkovarianz}
 
 Falls $X$ und $Y$ zumindest \emph{gemeinsam stationär im weiteren Sinne }(\ref{jointstationary}) sind, gilt:
 
 \begin{equation}
-c_{XY}(\kappa)=r_{XY}(\kappa)-E[X(n)]E[Y(n)]
+c_{XY}(\kappa)=r_{XY}(\kappa)-\E[X(n)]\E[Y(n)]
+\end{equation}
+\subsection{Unkorreliertheit (uncorrelated) anhand der Kreuzkovarianz}\label{uncorrelated}
+\begin{equation}
+	c_{XY}(\kappa)=0
 \end{equation}
 
+\section{Komplexe Prozesse}
+Seien $X(n)$ und $Y(n)$ reale Zufallsprozesse, so ist
+\begin{equation}
+Z(n)\hat{=}  X(n)+jY(n)
+\end{equation}
+ein Komplexer Zufallsprozess
+\subsection{Erwartungswert eines Komplexen Zufallsprozess}
+\begin{equation}
+\E[Z(n)]=\E[X(n)]+j\E[Y(n)]
+\end{equation}
+\subsection{SOMF eines Komplexen Zufallsprozess}
+\begin{equation}
+r_{ZZ}(n_1,n_2)=\E[Z(n_1) \cdot Z(n_2)^*]
+\end{equation}
+\subsubsection{Besondere Eigenschaften}
+Für einen komplexen Zufallsprozess, welcher \emph{stationär im weiteren Sinne}(\ref{stationary}) ist, gilt
+\begin{equation}
+r_{ZZ}(-\kappa)=r_{ZZ}(\kappa)^*
+\end{equation}
+\subsection{cross-SOMF komplexer Zufallsprozesse}
+
+\begin{equation}
+	r_{Z_1Z_2}(n_1,n_2) = \E[Z_1(n_1) \cdot Z_2(n_2)^*]
+\end{equation}
+
+\subsection{Kovarianz (Covariance) eines komplexen Zufallsprozess}
+\begin{equation}
+c_{ZZ}(n+\kappa,n) = \E[(Z(n+\kappa)-\E[Z(n+\kappa)]) \cdot (Z(n)-\E[Z(n)])^*]
+\end{equation}
+
+\subsection{Kreuzkovarianz(cross-covariance) komplexer Zufallsprozesse}
+\begin{equation}
+c_{Z_1Z_2}(n+\kappa,n) = \E[(Z_1(n+\kappa)-\E[Z_1(n+\kappa)]) \cdot (Z_2(n)-\E[Z_2(n)])^*] 
+\end{equation}
+
+\subsection{Eigenschaften komplexer Zufallsprozesse}
+\emph{Unkorreliertheit} verhält sich wie (\ref{uncorrelated}), genauso wie \emph{Orthogonalität} (\ref{ortho})
+\chapter{Spektraldichten (Power Spectral Density)}
+% 
+% 
+% \section{Normierte Energie in einem Zeitintervall}
+% \begin{subequations}
+% \begin{align}
+% E_N&=\sum\limits_{n=-M}^M x_N(n)^2 \\
+% &=\int\limits_{-\pi}^\pi \left|X_N\left(e^{j\omega}\right)\right|^2 \frac{d\omega}{2\pi}
+% \end{align}
+% \end{subequations}
+% \section{Durchschnittliche Leistung in einem Zeitintervall}
+% \begin{subequations}
+% \begin{align}
+% P_N&=\frac{1}{2M+1}\sum\limits_{n=-M}^M x_N(n)^2 \\
+% &=\int\limits_{-\pi}^\pi \frac{\left|X_N\left(e^{j\omega}\right)\right|^2}{2M+1} \frac{d\omega}{2\pi}
+% \end{align}
+% \end{subequations}
+
+\section{Leistungsdichte}
+\subsection{Leistungsspektraldichte (Power Spectral Density,PSD)} \label{psd}
+\begin{align}
+S_{XX}(e^{j\omega},\xi) &= \lim_{M \rightarrow \infty} \frac{\E\left[\left|X_N\left(e^{j\omega},\xi\right)\right|^2\right]}{2M+1}\\
+\text{mit}\notag\\
+X_N(e^{j\omega},\xi) &=\sum\limits_{n=-M}^M x_N(n,\xi) e^{-j\omega n}
+\end{align}
+\subsubsection{Eigenschaften der PSD}
+\begin{subequations}
+\begin{alignat}{3}
+S_{XX}(e^{j \omega})^*&=S_{XX}(e^{j \omega}) \quad &\text{mit}\quad X(n)\in \mathbb{C} \\
+S_{XX}(e^{j \omega})&\geq 0 \quad &\text{mit}\quad X(n)\in \mathbb{C} \\
+S_{XX}(e^{-j \omega})&=S_{XX}(e^{j \omega}) \quad &\text{mit}\quad X(n)\in \mathbb{R} 
+\end{alignat}
+\end{subequations}
+\subsection{Durchschnittliche Leistung eines Zufallsprozesses}
+\begin{subequations}
+\begin{align}
+P_{XX}&=\int\limits_{-\pi}^\pi S_{XX}(e^{j\omega}) \frac{d\omega}{2\pi} = r_{XX} (0)\\
+&=\lim_{M \rightarrow \infty}\int\limits_{-\pi}^\pi \frac{\E\left[\left|X_N\left(e^{j\omega},\xi\right)\right|^2\right]}{2M+1} \frac{d\omega}{2\pi}
+\end{align}
+\end{subequations}
+\subsection{Kreuzleistungsdichte (cross-power density)}
+\begin{equation}
+S_{XY}(e^{j\omega},\xi) = \lim_{M \rightarrow \infty} \frac{\E\left[X_N\left(e^{j\omega},\xi\right)Y_N\left(e^{j\omega},\xi\right)^*\right]}{2M+1}\\
+\end{equation}
+
+\subsection{Durchschnittliche Kreuzleistung zweier Zufallsprozesse}
+\begin{equation}
+P_{XY}=\int\limits_{-\pi}^\pi S_{XY}(e^{j\omega}) \frac{d\omega}{2\pi}
+\end{equation}
+
+\subsection{Wiener-Khinchine theorem}
+Ist $X(n)$ ein \emph{im weiteren Sinne stationärer}(\ref{stationary}) Zufallsprozess, do kann die \emph{Leistungsspektraldichte} (\ref{psd}) 
+aus der Fourier-Transformation der \emph{Momentenfunktion zweiter Ordnung(SOMF)} (\ref{somf}) gewonnen werden:
+\begin{subequations}
+\begin{align}
+S_{XX}(e^{j\omega})&=\mathcal{F}\{r_{XX}(\kappa)\}=\sum\limits_{k=-\infty}^\infty r_{XX}(\kappa) e^{-k\omega \kappa} \\
+&\quad\text{und invers} \notag\\
+r_{XX}(\kappa)&=\mathcal{F}^{-1}\{S_{XX}(e^{j\omega})\}=\int\limits_{-\pi}^\pi S_{XY}(e^{j\omega \kappa})\frac{d\omega}{2\pi}
+\end{align}
+\end{subequations}
+
+\subsection{Kreuzleistungsdichte durch Cross-SOMF}
+\begin{equation}
+S_{XY}(e^{j\omega})=\mathcal{F}\{r_{XY}(\kappa)\}=\sum\limits_{k=-\infty}^\infty r_{XY}(\kappa) e^{-k\omega \kappa}
+\end{equation}
+\chapter{Sonstiges}
+\section{Spezielle Funktionen}
+\subsection{Gaussian white noise process}
+Gaußsches weißes Rauschen ist immer \emph{stationär} (\ref{stationarystrict}) 
+\begin{subequations}
+\begin{align}
+r_{WW}(\kappa)&=\sigma_W^2\delta(\kappa) \\
+S_{WW}(e^{j \omega})&=\sigma_W^2
+\end{align}
+\end{subequations}
+
+\subsection{Kronecker delta function}
+\begin{equation}
+\delta(\kappa)=\begin{cases}
+1 &\kappa = 0\\
+0 &\kappa \neq 0
+\end{cases}
+\end{equation}
 \end{document}
