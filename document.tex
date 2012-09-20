@@ -151,6 +151,9 @@ Seien $X_i$ Zufallsvariablen
 \E\left[\sum\limits_{i=0}^n X_i\right]=\sum\limits_{i=0}^n  \E[X_i]
 \end{equation}
 \section{Varianz}
+
+
+
 \subsection{Berechnung der Varianz}
 \begin{equation}
 \Var(X)=\E(X^2)-\E(X)^2
@@ -163,6 +166,38 @@ Seien $X_i$ Zufallsvariablen
 \begin{equation}
 \Var\left[\sum\limits_{i=0}^n X_i\right]=\sum\limits_{i=0}^n  \Var[X_i]
 \end{equation}
+
+
+
+\section{Konvergenz}
+Es wird eine Konvergenz von Zufallsvariablen $X_k$ mit $k=0,1,2 \dots$ betrachtet:
+\subsection{Konvergenz mit Wahrscheinlichkeit eins (Convergence with probability one)} \label{conv:one}
+\begin{equation}
+P \left(\lim_{k\rightarrow\infty} |X_k-X|=0\right)=1
+\end{equation}
+
+\subsection{Konvergenz im ``Mean Square Sense''} \label{conv:mss}
+\begin{equation}
+\lim_{k\rightarrow\infty} \E\left[|X_k-X|^2\right]=0
+\end{equation}
+
+\subsection{Convergence in Pobability} \label{conv:prob}
+\begin{equation}
+\lim_{k\rightarrow\infty}P \left( |X_k-X|>\epsilon\right)=0
+\end{equation}
+
+\subsection{Convergence in Distribution} \label{conv:dist}
+\begin{equation}
+\lim_{k\rightarrow\infty}F_{X_k} (x)=F_X(x) \quad \text{Für alle stetigen punkte $x$ aus } F_X
+\end{equation}
+
+\subsection{Gewichtung der Konvergenzen}
+\begin{itemize}
+  \item Convergence with probability 1 (\ref{conv:one}) implies convergence in probability (\ref{conv:prob})
+  \item Convergence with probability 1 (\ref{conv:one}) implies convergence in the MSS (\ref{conv:mss}), provided second order moments exist.
+  \item Convergence in the MSS (\ref{conv:mss}) implies convergence in probability (\ref{conv:prob}).
+  \item Convergence in probability (\ref{conv:prob}) implies convergence in distribution (\ref{conv:dist}).
+\end{itemize}
 \chapter{Discrete-Time-Fourier-Transformation}
 
 \section{Abtastung}
@@ -428,6 +463,39 @@ Spektrum die Fouriertransformierte der \emph{Kovarianzfunktion} (\ref{covariance
 \begin{equation}
 C_{XX}(e^{j \omega})=\sum\limits_{n=-\infty}^\infty c_{xx}(n)e^{-j\omega n}
 \end{equation}
+
+
+\subsubsection{Eigenschaften des Spektrums}
+\begin{enumerate}
+  \item Wenn $\sum_n |c_{XX}(n)|<\infty$, dann existiert $C_{XX}$ und ist begrenzt und stetig
+  \item $C_{XX}$ ist Real, $2\pi$-Periodisch und $C_{XX}\geq0$
+  \item \begin{equation}
+  c_{XX}(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}C_{XX}(e^{j \omega})e^{j \omega n}d\omega
+  \end{equation}
+\end{enumerate}
+
+\subsection{Kreuzspektrum zweier gemeinsam stationärer Zufallsprozesse}
+Ist $X(n)$ und $Y(n)$ \emph{gemeinsam stationär} (\ref{jointstationary}), dann ist das Kreuzspektrum definiert durch
+\begin{equation}
+C_{XY}(e^{j \omega})=\sum\limits_{n=-\infty}^\infty c_{XY}(n)e^{-j \omega n}
+\end{equation}
+
+\subsubsection{Eigenschaften der Kreuzspektrums}
+Das Spektrum eines Realen Zufallsprozesses ist komplett im Intervall $[0,\pi]$ bestimmt
+\begin{subequations}
+\begin{align}
+	C_{XY}(e^{j \omega})&=C_{YX}(e^{j \omega})^* \\
+	c_{XY}(n) &= \frac{1}{2\pi}\int\limits_{-\pi}^\pi C_{XY}(e^{j \omega})e^{j \omega n} d\omega \\
+	\text{Wenn } &X(n),Y(n) \in \mathbb{R} \text{ dann} \notag\\
+	C_{XX}(e^{j \omega}) &= C_{XX}(e^{-j \omega})\\
+	C_{XY}(e^{j \omega}) =C_{XY}(e^{-j \omega})^*&=C_{YX}(e^{-j \omega})=C_{YX}(e^{j \omega})^*
+\end{align}
+\end{subequations}
+
+
+
+
+
 
 
 \chapter{Sonstiges}
