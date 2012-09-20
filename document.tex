@@ -1,10 +1,11 @@
 %%This is a very basic article template.
 %%There is just one section and two subsections.
 
-\documentclass[accentcolor=tud9c,11pt,nochapname]{tudreport}
+\documentclass[accentcolor=tud9c,11pt,nochapname,bigchapter]{tudreport}
 \usepackage{mathtools}
 \usepackage[pdftex,bookmarks=true]{hyperref}
 \usepackage{ngerman}
+\usepackage{hyperref}
 \DeclareMathSizes{11}{11}{8}{8}
 \begin{document}
 
@@ -14,7 +15,7 @@
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.5 - 20.09.2012}
 
 \maketitle
 
@@ -26,7 +27,8 @@
 
 \numberwithin{equation}{chapter}
 \section*{Vorwort}
-Fehler und Verbesserungen bitte an studium@daniel-thiem.de senden.
+Fehler und Verbesserungen bitte an studium@daniel-thiem.de senden oder als Issue bei \url{https://github.com/Tyde/stosigsysfs/issues} melden. 
+Der Quelltext dieser Formelsammlung ist auf \url{https://github.com/Tyde/stosigsysfs} und darf gerne erweitert werden.
 \chapter{Kombinatorik \& reine Stochastik}
 
 \section{Wahrscheinlichkeitsdichtefunktion}
@@ -242,7 +244,7 @@ r_{XY}(-\kappa) &= r_{YX}(\kappa) \\
 \begin{equation}
 	r_{XY}(\kappa)=0
 \end{equation}
-\section{Kovarianz (Covariance,Central-SOMF)}
+\section{Kovarianz (Covariance,Central-SOMF)} \label{covariance}
 \begin{subequations}
 \begin{align}
 c_{XX}(n+\kappa,n) &= \E[(X(n+\kappa)-\E[X(n+\kappa)]) \cdot (X(n)-\E[X(n)])] \\
@@ -259,7 +261,7 @@ c_{XX}(\kappa)=r_{XX}(\kappa)-(\E[X(n)])^2
 \begin{equation}
 c_{XX}(0)=\Var(X)
 \end{equation}
-\section{Kreuz-Kovarianz (Cross-covariance)}
+\section{Kreuz-Kovarianz (Cross-covariance)} \label{crosscovariance}
 \begin{subequations}
 \begin{align}
 c_{XY}(n+\kappa,n) &= \E[(X(n+\kappa)-\E[X(n+\kappa)]) \cdot (Y(n)-\E[Y(n)])] \\
@@ -402,6 +404,30 @@ Die Kohärenz zwischen den Zufallsprozessen $X(n)$ und $Y(n)$ besagt, wie gut $X$
 0\leq\rm{Coh}_{XY}(e^{j\omega})\leq 1
 \end{equation}
 
+\section{Root Mean Square (RMS) und Gleichsstrom (DC) Werte}
+\subsection{DC-Values}
+\begin{equation}
+X_{dc} = \lim_{M \rightarrow \infty} \frac{1}{2M+1} \sum\limits_{n=-M}^M X(n)=\E[X(n)]=\mu_X
+\end{equation}
+\subsection{Normalisierte DC-Leistung}
+\begin{equation}
+P_{dc} = \left[\lim_{M \rightarrow \infty} \frac{1}{2M+1} \sum\limits_{n=-M}^M X(n)\right]^2 = \E[X(n)]^2 =X_{dc}^2
+\end{equation}
+\subsection{RMS-Value}
+\begin{equation}
+X_{RMS}=\sqrt{\lim_{M \rightarrow \infty} \frac{1}{2M+1} \sum\limits_{n=-M}^M X(n)^2}=\sqrt{r_{XX}(0)}=\sqrt{\int\limits_{-\pi}^\pi S_{XX}(e^{j\omega}) \frac{d\omega}{2\pi} }
+\end{equation}
+
+
+%Evtl noch EMS Value of AC PArt
+
+\section{Spektrum}
+\subsection{Spektrum eines stationären Zufallsprozesses}
+Ist $X(n)$ ein \emph{stationärer} (\ref{stationarystrict}) Zufallsprozess, so ist sein 
+Spektrum die Fouriertransformierte der \emph{Kovarianzfunktion} (\ref{covariance})
+\begin{equation}
+C_{XX}(e^{j \omega})=\sum\limits_{n=-\infty}^\infty c_{xx}(n)e^{-j\omega n}
+\end{equation}
 
 
 \chapter{Sonstiges}
