@@ -493,17 +493,65 @@ Das Spektrum eines Realen Zufallsprozesses ist komplett im Intervall $[0,\pi]$ b
 \end{subequations}
 
 
+\chapter{Filter}
+\section{Lineare Filter}
+Wenn $X(n)$ und $Y(n)$ \emph{stationär} (\ref{stationarystrict}) sind, $h(n)$ eine Impulsantwort eines LTI-Systems ist
+ und das Filter \emph{stabil} (\ref{Stability}) ist, existiert mit \emph{Wahrscheinlichkeit 1} (\ref{conv:one})
+\begin{equation} \label{eq:linfil}
+Y(n)=\sum\limits_{k=-\infty}^\infty h(k)X(n-k)=\sum\limits_{k=-\infty}^\infty h(n-k)X(k)
+\end{equation}
+\subsection{Stabilität} \label{Stability}
+Die Stabilität eines Filters ist gegeben, wenn:
+\begin{equation}
+\sum|h(n)|<\infty
+\end{equation}
 
+\subsection{Eigenschaften eines Linearen Filters}
+\begin{itemize}
+  \item Ist $X(n)$ \emph{stationär} (\ref{stationarystrict}) und $\E[|X(n)|]<\infty$, dann ist $Y(n)$ \emph{stationär}
+  \item $Y(n)$ wird linearer Prozess genannt (linear process)
+\end{itemize}
+\subsection{Instabiler linearer Filter}
+Ist das Filter nicht \emph{stabil} (\ref{Stability}), aber $\int|H(e^{j\omega}|d\omega<\infty)$ trifft zu 
+und für $X(n) \quad \sum|c_{XX}(n)<\infty$, sodann existiert im \emph{Mean-Square-Sense} (\ref{conv:mss}) die Formel (\ref{eq:linfil})
+und $Y(n)$ ist \emph{stationär im weiteren Sinne} (\ref{stationary}) mit
+\begin{equation}
+\mu_Y=\E[Y(n)]=\sum\limits_{k=-\infty}^\infty h(k)\E[X(n-k)]=\mu_XH(e^{j0})
+\end{equation}
 
+\subsection{Kreukovarianz des Ausgangs des Filters}
+\begin{subequations}
+\begin{align}
+c_{YX}&=\sum\limits_{k=-\infty}^\infty h(k)c_{XX}(\kappa -k) \\
+C_{YX}(e^{j\omega})&=H(e^{j\omega})C_{XX}(e^{j\omega})\\
+c_{YX}&=\int\limits_{-\pi}^\pi H(e^{j\omega})C_{XX}(e^{j\omega})e^{-j\omega\kappa}\frac{d\omega}{2\pi}
+\end{align}
+\end{subequations}
 
+\subsection{Kreukovarianz des Ausgangs zweier Filter}
+\begin{subequations}
+\begin{align}
+c_{Y_1Y_2}(\kappa)&=\sum\limits_{k=-\infty}^\infty \sum\limits_{l=-\infty}^\infty h_1(k)h_2(l)\cdot c_{X_1X_2}(\kappa -k+l) \\
+c_{Y_1Y_2}(\kappa)&=h_1(\kappa)\star h_2(\kappa)^*\star c_{X_1X_2}(\kappa)\\
+C_{Y_1Y_2}(e^{j\omega})&=H_1(e^{j\omega})H_2(e^{j\omega})^*C_{X_1X_2}(e^{j\omega})
+\end{align}
+\end{subequations}
 
-
+\subsection{Kaskade linearer Filter}
+\begin{subequations}
+\begin{align}
+H(e^{j\omega})&=\prod\limits_{i=1}^L H_i(e^{j\omega}) \\
+C_{YY}(e^{j\omega})&=C_{XX}(e^{j\omega})\prod\limits_{i=1}^L\left| H_i(e^{j\omega})\right|^2 \\
+C_{YX}(e^{j\omega})&=C_{XX}(e^{j\omega})\prod\limits_{i=1}^L H_i(e^{j\omega})
+\end{align}
+\end{subequations}
 \chapter{Sonstiges}
 \section{Spezielle Funktionen}
-\subsection{Gaussian white noise process}
+\subsection{Gaussian white noise process} \label{whitenoise}
 Gaußsches weißes Rauschen ist immer \emph{stationär} (\ref{stationarystrict}) 
 \begin{subequations}
 \begin{align}
+\E[W(n)]=0
 r_{WW}(\kappa)&=\sigma_W^2\delta(\kappa) \\
 S_{WW}(e^{j \omega})&=\sigma_W^2
 \end{align}
