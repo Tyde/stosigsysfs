@@ -1,8 +1,9 @@
 %%This is a very basic article template.
 %%There is just one section and two subsections.
 
-\documentclass[accentcolor=tud9c,10pt,nochapname]{tudexercise}
+\documentclass[accentcolor=tud9c,10pt,nochapname]{tudreport}
 \usepackage{mathtools}
+\usepackage{ngerman}
 \DeclareMathSizes{10}{12}{8}{8}
 \begin{document}
 
@@ -16,20 +17,20 @@
 \maketitle
 
 \tableofcontents
-\numberwithin{equation}{section}
-\section{Kombinatorik \& reine Stochastik}
+\numberwithin{equation}{chapter}
+\chapter{Kombinatorik \& reine Stochastik}
 
-\subsection{Wahrscheinlichkeitsdichtefunktion}
+\section{Wahrscheinlichkeitsdichtefunktion}
 \begin{equation}
 	f(x) = P(X=x)
 \end{equation}
 
-\subsection{Verteilungsfunktion}
+\section{Verteilungsfunktion}
 \begin{equation}
 	F(x) = P(X\leq x) = \int\limits_{-\infty}^x f(t)dt 
 \end{equation}
 
-\subsection{Formel von Bayes}
+\section{Formel von Bayes}
 
 \begin{equation}
 	P(A|B) = \frac{P(A \cap B)}{P(B)} 
@@ -38,8 +39,8 @@
 
 
 
-\subsection{Erwartungswerte}
-\subsubsection{Allgmeine Erwartungswertberechnung}
+\section{Erwartungswerte}
+\subsection{Allgmeine Erwartungswertberechnung}
 
 
 Sei $f(x)$ die Wahrscheinlichkeitsdichtefunktion von $X$
@@ -48,7 +49,7 @@ Sei $f(x)$ die Wahrscheinlichkeitsdichtefunktion von $X$
 	E(X) = \int\limits_{-\infty}^\infty x \cdot f(x) dx
 \end{equation}
 
-\subsubsection{Erweiterte Erwartungswertberechnung}
+\subsection{Erweiterte Erwartungswertberechnung}
 
 Sei $Y=g(X)$ und $f(x)$ die Wahrscheinlichkeitsdichtefunktion von $X$
 
@@ -56,42 +57,62 @@ Sei $Y=g(X)$ und $f(x)$ die Wahrscheinlichkeitsdichtefunktion von $X$
 	E[Y] = E[g(X)] =  \int\limits_{-\infty}^\infty g(x) \cdot f(x) dx
 \end{equation}
 
-\subsubsection{Rechenregeln für Erwartungswerte}
+\subsection{Rechenregeln für Erwartungswerte}
 \begin{equation}
 	E[A \cdot B] = E[A] \cdot E[B]
-\end{equation}4
+\end{equation}
 
 \begin{equation}
 	E[aX +b] = aE[X] + b
 \end{equation}
 
-\subsection{Verteilungen}
+\section{Verteilungen}
 
-\subsubsection{Normalverteilung}
+\subsection{Normalverteilung}
 \begin{equation}
 f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2} \left(\frac{t-\mu}{\sigma}\right)^2}
 \end{equation}
 
+\chapter{Discrete-Time-Fourier-Transformation}
 
-\section{Prozesse}
+\section{Abtastung}
+\subsection{Im Zeitbereich}
+Sei $x_c(t)$ das zu abtastende Signal und $T_s=\frac{1}{f_s}$ die Abtastdauer bzw. Abtastfrequenz
+\begin{equation}
+x_s(t)=\sum\limits_{n=-\infty}^\infty x_c(nT_s)\delta(t-nT_s)
+\end{equation}
+\subsection{Im Frequenzbereich}
 
-\subsection{Strikte Stationarität}
+\begin{align}
+X_s(j\Omega)&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j(\Omega-\frac{2\pi k}{T_s})) \notag\\
+	&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j\Omega-kj\Omega_s) \quad \text{mit} \quad \Omega_s=\frac{2\pi}{T_s}\\
+\end{align}
+
+\subsubsection{Zusammenhang $\Omega$ und $n$}
+ACHTUNG: Dieser zusammenhang ist in SSS etwas anders im gegensatz zu dem Hilfsblatt von DSS
+\begin{equation}
+\omega = \Omega T_s
+\end{equation}
+
+\chapter{Prozesse}
+
+\section{Strikte Stationarität}
 \begin{equation}
 F_x(x_1,\dots ,x_N;n_1,\dots,n_N) = F_x(x_1,\dots ,x_N;n_1+n_0,\dots ,n_N+n_0) \quad \text{mit $N\rightarrow \infty$}
 \end{equation}
 
-\subsection{Second order moment function(SOMF)}
+\section{Second order moment function(SOMF)}
 \begin{equation}
 r_{XX}(n_1,n_2)=E[X(n_1)X(n_2)]
 \end{equation}
-\subsubsection{Stationär im weiteren Sinne}
+\subsection{Stationär im weiteren Sinne} \label{stationary}
 \begin{subequations}
 \begin{align}
 E[X(n)]&=\text{const.} \\
 r_{XX}(n_1,n_2) &= r_{XX}(\kappa) = E[X(n+\kappa)\cdot X(n)] \quad \text{mit} \quad \kappa = |n_2-n_1|
 \end{align}
 \end{subequations}
-\subsubsection{Eigenschaften der SOMF}
+\subsection{Eigenschaften der SOMF}
 \begin{subequations}
 \begin{align}
 r_{XX}(0) &= E[X(n)^2]=\sigma_X^2+\mu_x^2 \\
@@ -100,16 +121,16 @@ r_{XX}(0) &\geq|r_{XX}(\kappa)| \quad ,|\kappa|>0
 \end{align}
 \end{subequations}
 
-\subsection{Cross-SOMF}
+\section{Cross-SOMF}
 \begin{equation}
 	r_{XY}(n_1,n_2) = E[X(n_1) \cdot Y(n_2)]
 \end{equation}
 
-\subsubsection{Gemeinsame Statonarität (joint stationary)}
-\begin{equation}
+\subsection{Gemeinsame Statonarität (joint stationary)}\label{jointstationary}
+\begin{equation} 
 	r_{XY} = r_{XY}(n_1-n_2) = r_{XY}(\kappa) \quad\text{mit}\quad \kappa=n_1-n_2
 \end{equation}
-\subsubsection{Eigenschaften der Cross-SOMF}
+\subsection{Eigenschaften der Cross-SOMF}
 \begin{subequations}
 \begin{align}
 r_{XY}(-\kappa) &= r_{YX}(\kappa) \\
@@ -117,12 +138,40 @@ r_{XY}(-\kappa) &= r_{YX}(\kappa) \\
 |r_{XY}(\kappa)| &\leq \frac{1}{2}(r_{XX}(0)+r_{YY}(0))
 \end{align}
 \end{subequations}
-\subsubsection{Unkorreliertheit (uncorrelated)}
+\subsection{Unkorreliertheit (uncorrelated)}
 \begin{equation}
 	r_{XY}(\kappa)=\mu_x \cdot \mu_y
 \end{equation}
-\subsubsection{Orthogonalität}
+\subsection{Orthogonalität}
 \begin{equation}
 	r_{XY}(\kappa)=0
 \end{equation}
+\section{Central-SOMF}
+\begin{equation}
+c_{XX}(n+\kappa,n) = E[(X(n+\kappa)-E[X(n+\kappa)]) \cdot (X(n)-E[X(n)])]
+\end{equation}
+
+\subsection{Eigenschaften der Central-SOMF}
+Falls $X$ zumindest \emph{stationär im weiteren Sinne}(\ref{stationary}) ist, gilt
+\begin{equation}
+c_{XX}(\kappa)=r_{XX}(\kappa)-(E[X(n)])^2 
+\end{equation}
+
+\subsection{Überführung der Central-SOMF in die Varianz}
+\begin{equation}
+c_{XX}(0)=Var(X)
+\end{equation}
+\section{Kovarianz (Covariance)}
+\begin{equation}
+c_{XX}(n+\kappa,n) = r_{XX}(n+\kappa,n)-E[X(n+k)]E[X(n)]
+\end{equation}
+
+\subsection{Eigenschaften der Kovarianz}
+
+Falls $X$ und $Y$ zumindest \emph{gemeinsam stationär im weiteren Sinne }(\ref{jointstationary}) sind, gilt:
+
+\begin{equation}
+c_{XY}(\kappa)=r_{XY}(\kappa)-E[X(n)]E[Y(n)]
+\end{equation}
+
 \end{document}
