@@ -1,0 +1,128 @@
+%%This is a very basic article template.
+%%There is just one section and two subsections.
+
+\documentclass[accentcolor=tud9c,10pt,nochapname]{tudexercise}
+\usepackage{mathtools}
+\DeclareMathSizes{10}{12}{8}{8}
+\begin{document}
+
+
+
+
+
+\title{Stochastische Signale und Systeme}
+\subtitle{Zusammenfassung Formeln}
+\author{Daniel Thiem}
+\maketitle
+
+\tableofcontents
+\numberwithin{equation}{section}
+\section{Kombinatorik \& reine Stochastik}
+
+\subsection{Wahrscheinlichkeitsdichtefunktion}
+\begin{equation}
+	f(x) = P(X=x)
+\end{equation}
+
+\subsection{Verteilungsfunktion}
+\begin{equation}
+	F(x) = P(X\leq x) = \int\limits_{-\infty}^x f(t)dt 
+\end{equation}
+
+\subsection{Formel von Bayes}
+
+\begin{equation}
+	P(A|B) = \frac{P(A \cap B)}{P(B)} 
+	\Rightarrow P(A_k|B) = \frac{P(A_k \cdot P(B|A_k))}{\sum\limits_{i=1}^n P(B|A_i) \cdot P(A_i)}
+\end{equation}
+
+
+
+\subsection{Erwartungswerte}
+\subsubsection{Allgmeine Erwartungswertberechnung}
+
+
+Sei $f(x)$ die Wahrscheinlichkeitsdichtefunktion von $X$
+
+\begin{equation}
+	E(X) = \int\limits_{-\infty}^\infty x \cdot f(x) dx
+\end{equation}
+
+\subsubsection{Erweiterte Erwartungswertberechnung}
+
+Sei $Y=g(X)$ und $f(x)$ die Wahrscheinlichkeitsdichtefunktion von $X$
+
+\begin{equation}
+	E[Y] = E[g(X)] =  \int\limits_{-\infty}^\infty g(x) \cdot f(x) dx
+\end{equation}
+
+\subsubsection{Rechenregeln für Erwartungswerte}
+\begin{equation}
+	E[A \cdot B] = E[A] \cdot E[B]
+\end{equation}4
+
+\begin{equation}
+	E[aX +b] = aE[X] + b
+\end{equation}
+
+\subsection{Verteilungen}
+
+\subsubsection{Normalverteilung}
+\begin{equation}
+f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2} \left(\frac{t-\mu}{\sigma}\right)^2}
+\end{equation}
+
+
+\section{Prozesse}
+
+\subsection{Strikte Stationarität}
+\begin{equation}
+F_x(x_1,\dots ,x_N;n_1,\dots,n_N) = F_x(x_1,\dots ,x_N;n_1+n_0,\dots ,n_N+n_0) \quad \text{mit $N\rightarrow \infty$}
+\end{equation}
+
+\subsection{Second order moment function(SOMF)}
+\begin{equation}
+r_{XX}(n_1,n_2)=E[X(n_1)X(n_2)]
+\end{equation}
+\subsubsection{Stationär im weiteren Sinne}
+\begin{subequations}
+\begin{align}
+E[X(n)]&=\text{const.} \\
+r_{XX}(n_1,n_2) &= r_{XX}(\kappa) = E[X(n+\kappa)\cdot X(n)] \quad \text{mit} \quad \kappa = |n_2-n_1|
+\end{align}
+\end{subequations}
+\subsubsection{Eigenschaften der SOMF}
+\begin{subequations}
+\begin{align}
+r_{XX}(0) &= E[X(n)^2]=\sigma_X^2+\mu_x^2 \\
+r_{XX}(\kappa) &= r_{XX}(-\kappa) \\
+r_{XX}(0) &\geq|r_{XX}(\kappa)| \quad ,|\kappa|>0
+\end{align}
+\end{subequations}
+
+\subsection{Cross-SOMF}
+\begin{equation}
+	r_{XY}(n_1,n_2) = E[X(n_1) \cdot Y(n_2)]
+\end{equation}
+
+\subsubsection{Gemeinsame Statonarität (joint stationary)}
+\begin{equation}
+	r_{XY} = r_{XY}(n_1-n_2) = r_{XY}(\kappa) \quad\text{mit}\quad \kappa=n_1-n_2
+\end{equation}
+\subsubsection{Eigenschaften der Cross-SOMF}
+\begin{subequations}
+\begin{align}
+r_{XY}(-\kappa) &= r_{YX}(\kappa) \\
+|r_{XY}(\kappa)| &\leq \sqrt{r_{XX}(0) \cdot r_{YY}(0)} \\
+|r_{XY}(\kappa)| &\leq \frac{1}{2}(r_{XX}(0)+r_{YY}(0))
+\end{align}
+\end{subequations}
+\subsubsection{Unkorreliertheit (uncorrelated)}
+\begin{equation}
+	r_{XY}(\kappa)=\mu_x \cdot \mu_y
+\end{equation}
+\subsubsection{Orthogonalität}
+\begin{equation}
+	r_{XY}(\kappa)=0
+\end{equation}
+\end{document}
