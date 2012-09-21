@@ -1,28 +1,36 @@
 %%This is a very basic article template.
 %%There is just one section and two subsections.
 
-\documentclass[accentcolor=tud9c,11pt,nochapname,bigchapter]{tudreport}
+\documentclass[accentcolor=tud9c,9.5pt,nochapname,bigchapter,paper=a5report]{tudreport}
+
+
 \usepackage{mathtools}
 \usepackage[pdftex,bookmarks=true]{hyperref}
 \usepackage{ngerman}
+\usepackage{lscape}
 \usepackage{hyperref}
+\DeclareMathSizes{9.5}{9.5}{7}{7}
+\DeclareMathSizes{10}{10}{7}{7}
 \DeclareMathSizes{11}{11}{8}{8}
 \begin{document}
 
 \def\Var{{\rm Var}\,}
 \def\E{{\rm E}\,}
+\def\freq{{(e^{j\omega})},}
 
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.5 - 20.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.7 - 20.09.2012}
 
 \maketitle
-
-
-
-
+\newpage
+\thispagestyle{plain}
+\mbox{}
 \tableofcontents
+
+
+
 
 
 \numberwithin{equation}{chapter}
@@ -215,7 +223,7 @@ X_s(j\Omega)&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j(\Omega-\frac{2\p
 \section{Transformation}
 \subsection{Rücktransformation}
 \begin{align}
-x[n]&=\int\limits_{-\pi}^\pi X(e^{j\omega})e^{j\omega n}d\omega 
+x[n]&=\int\limits_{-\pi}^\pi X\freqe^{j\omega n}d\omega 
 \end{align}
 \subsection{Zusammenhang $\Omega$ und $n$} \label{omegaToDescrete}
 ACHTUNG: Dieser zusammenhang ist in SSS etwas anders im gegensatz zu dem Hilfsblatt von DSS
@@ -224,7 +232,7 @@ ACHTUNG: Dieser zusammenhang ist in SSS etwas anders im gegensatz zu dem Hilfsbl
 \end{equation}
 \subsection{Berechnen einer Übertragungsfunktion im zeitdiskreten Fall}
 \begin{enumerate}
-	\item Zeitkontinuierliches $H(e^{j\omega})=\frac{Y(e^{j\omega})}{X(e^{j\omega})}$ berechnen
+	\item Zeitkontinuierliches $H\freq=\frac{Y\freq}{X\freq}$ berechnen
 	\item Formel aus (\ref{omegaToDescrete}) einsetzen, um $H(j\Omega)$ zu erreichen
 \end{enumerate}
 \chapter{Prozesse}
@@ -389,7 +397,7 @@ S_{XX}(e^{-j \omega})&=S_{XX}(e^{j \omega}) \quad &\text{mit}\quad X(n)\in \math
 \subsection{Durchschnittliche Leistung eines Zufallsprozesses}
 \begin{subequations}
 \begin{align}
-P_{XX}&=\int\limits_{-\pi}^\pi S_{XX}(e^{j\omega}) \frac{d\omega}{2\pi} = r_{XX} (0)\\
+P_{XX}&=\int\limits_{-\pi}^\pi S_{XX}\freq \frac{d\omega}{2\pi} = r_{XX} (0)\\
 &=\lim_{M \rightarrow \infty}\int\limits_{-\pi}^\pi \frac{\E\left[\left|X_N\left(e^{j\omega},\xi\right)\right|^2\right]}{2M+1} \frac{d\omega}{2\pi}
 \end{align}
 \end{subequations}
@@ -409,7 +417,7 @@ S_{XY}(e^{j \omega})&=S_{YX}(e^{j \omega}) =0 \quad &\text{wenn $X(n)$ und $Y(n)
 \end{subequations}
 \subsection{Durchschnittliche Kreuzleistung zweier Zufallsprozesse}
 \begin{equation}
-P_{XY}=\int\limits_{-\pi}^\pi S_{XY}(e^{j\omega}) \frac{d\omega}{2\pi}
+P_{XY}=\int\limits_{-\pi}^\pi S_{XY}\freq \frac{d\omega}{2\pi}
 \end{equation}
 
 \subsection{Wiener-Khinchine theorem}
@@ -417,26 +425,26 @@ Ist $X(n)$ ein \emph{im weiteren Sinne stationärer}(\ref{stationary}) Zufallspro
 aus der Fourier-Transformation der \emph{Momentenfunktion zweiter Ordnung(SOMF)} (\ref{somf}) gewonnen werden:
 \begin{subequations}
 \begin{align}
-S_{XX}(e^{j\omega})&=\mathcal{F}\{r_{XX}(\kappa)\}=\sum\limits_{k=-\infty}^\infty r_{XX}(\kappa) e^{-k\omega \kappa} \\
+S_{XX}\freq&=\mathcal{F}\{r_{XX}(\kappa)\}=\sum\limits_{k=-\infty}^\infty r_{XX}(\kappa) e^{-k\omega \kappa} \\
 &\quad\text{und invers} \notag\\
-r_{XX}(\kappa)&=\mathcal{F}^{-1}\{S_{XX}(e^{j\omega})\}=\int\limits_{-\pi}^\pi S_{XY}(e^{j\omega \kappa})\frac{d\omega}{2\pi}
+r_{XX}(\kappa)&=\mathcal{F}^{-1}\{S_{XX}\freq\}=\int\limits_{-\pi}^\pi S_{XY}(e^{j\omega \kappa})\frac{d\omega}{2\pi}
 \end{align}
 \end{subequations}
 
 \subsection{Kreuzleistungsdichte durch Cross-SOMF}
 \begin{equation}
-S_{XY}(e^{j\omega})=\mathcal{F}\{r_{XY}(\kappa)\}=\sum\limits_{k=-\infty}^\infty r_{XY}(\kappa) e^{-k\omega \kappa}
+S_{XY}\freq=\mathcal{F}\{r_{XY}(\kappa)\}=\sum\limits_{k=-\infty}^\infty r_{XY}(\kappa) e^{-k\omega \kappa}
 \end{equation}
 
 
 \section{Kohärenz (coherence)} \label{coherence}
 \begin{equation}
-	\rm{Coh}_{XY}(e^{j\omega})=\frac{\left|S_{XY}(e^{j\omega})\right|^2}{S_{XX}(e^{j\omega})S_{YY}(e^{j\omega})}
+	\rm{Coh}_{XY}\freq=\frac{\left|S_{XY}\freq\right|^2}{S_{XX}\freqS_{YY}\freq}
 \end{equation}
 \subsection{Eigenschaften der Kohärenz}
 Die Kohärenz zwischen den Zufallsprozessen $X(n)$ und $Y(n)$ besagt, wie gut $X$ zu $Y$ bei einer gegebenen Frequenz $\omega$ korrespondiert.
 \begin{equation}
-0\leq\rm{Coh}_{XY}(e^{j\omega})\leq 1
+0\leq\rm{Coh}_{XY}\freq\leq 1
 \end{equation}
 
 \section{Root Mean Square (RMS) und Gleichsstrom (DC) Werte}
@@ -450,7 +458,7 @@ P_{dc} = \left[\lim_{M \rightarrow \infty} \frac{1}{2M+1} \sum\limits_{n=-M}^M X
 \end{equation}
 \subsection{RMS-Value}
 \begin{equation}
-X_{RMS}=\sqrt{\lim_{M \rightarrow \infty} \frac{1}{2M+1} \sum\limits_{n=-M}^M X(n)^2}=\sqrt{r_{XX}(0)}=\sqrt{\int\limits_{-\pi}^\pi S_{XX}(e^{j\omega}) \frac{d\omega}{2\pi} }
+X_{RMS}=\sqrt{\lim_{M \rightarrow \infty} \frac{1}{2M+1} \sum\limits_{n=-M}^M X(n)^2}=\sqrt{r_{XX}(0)}=\sqrt{\int\limits_{-\pi}^\pi S_{XX}\freq \frac{d\omega}{2\pi} }
 \end{equation}
 
 
@@ -523,8 +531,8 @@ und $Y(n)$ ist \emph{stationär im weiteren Sinne} (\ref{stationary}) mit
 \begin{subequations}
 \begin{align}
 c_{YX}&=\sum\limits_{k=-\infty}^\infty h(k)c_{XX}(\kappa -k) \\
-C_{YX}(e^{j\omega})&=H(e^{j\omega})C_{XX}(e^{j\omega})\\
-c_{YX}&=\int\limits_{-\pi}^\pi H(e^{j\omega})C_{XX}(e^{j\omega})e^{-j\omega\kappa}\frac{d\omega}{2\pi}
+C_{YX}\freq&=H\freqC_{XX}\freq\\
+c_{YX}&=\int\limits_{-\pi}^\pi H\freqC_{XX}\freqe^{-j\omega\kappa}\frac{d\omega}{2\pi}
 \end{align}
 \end{subequations}
 
@@ -533,18 +541,35 @@ c_{YX}&=\int\limits_{-\pi}^\pi H(e^{j\omega})C_{XX}(e^{j\omega})e^{-j\omega\kapp
 \begin{align}
 c_{Y_1Y_2}(\kappa)&=\sum\limits_{k=-\infty}^\infty \sum\limits_{l=-\infty}^\infty h_1(k)h_2(l)\cdot c_{X_1X_2}(\kappa -k+l) \\
 c_{Y_1Y_2}(\kappa)&=h_1(\kappa)\star h_2(\kappa)^*\star c_{X_1X_2}(\kappa)\\
-C_{Y_1Y_2}(e^{j\omega})&=H_1(e^{j\omega})H_2(e^{j\omega})^*C_{X_1X_2}(e^{j\omega})
+C_{Y_1Y_2}\freq&=H_1\freqH_2\freq^*C_{X_1X_2}\freq
 \end{align}
 \end{subequations}
 
 \subsection{Kaskade linearer Filter}
 \begin{subequations}
 \begin{align}
-H(e^{j\omega})&=\prod\limits_{i=1}^L H_i(e^{j\omega}) \\
-C_{YY}(e^{j\omega})&=C_{XX}(e^{j\omega})\prod\limits_{i=1}^L\left| H_i(e^{j\omega})\right|^2 \\
-C_{YX}(e^{j\omega})&=C_{XX}(e^{j\omega})\prod\limits_{i=1}^L H_i(e^{j\omega})
+H\freq&=\prod\limits_{i=1}^L H_i\freq \\
+C_{YY}\freq&=C_{XX}\freq\prod\limits_{i=1}^L\left| H_i\freq\right|^2 \\
+C_{YX}\freq&=C_{XX}\freq\prod\limits_{i=1}^L H_i\freq
 \end{align}
 \end{subequations}
+\section{Matched Filter}
+
+\subsection{Annahmen}
+\begin{itemize}
+  \item Das eingehende Signal $X(n)$ besteht entweder aus einem Signal mit Rauschen oder nur Rauschen:\begin{equation}
+  X(n)=\begin{cases}
+  s(n)+V(n)\\
+  V(n)
+  \end{cases}
+  \end{equation}
+  \item Dabei ist $s(n)$ reelwertig, deterministisch und betrachtet in $n \in [0,N)$
+  \item $E[V(n)]=0$ und $C_{VV}\freq$ bekannt
+\end{itemize}
+
+\section{Wiener Filter}
+
+
 \chapter{Sonstiges}
 \section{Spezielle Funktionen}
 \subsection{Gaussian white noise process} \label{whitenoise}
