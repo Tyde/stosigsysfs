@@ -9,6 +9,7 @@
 \usepackage{ngerman}
 \usepackage{lscape}
 \usepackage{hyperref}
+\usepackage{graphicx}
 \DeclareMathSizes{9.5}{9.5}{7}{7}
 \DeclareMathSizes{10}{10}{7}{7}
 \DeclareMathSizes{11}{11}{8}{8}
@@ -16,12 +17,12 @@
 
 \def\Var{{\rm Var}\,}
 \def\E{{\rm E}\,}
-\def\freq{{(e^{j\omega})},}
+\def\freq{{(e^{j\omega})}\,}
 
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.7 - 20.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.8 - 21.09.2012}
 
 \maketitle
 \newpage
@@ -223,7 +224,7 @@ X_s(j\Omega)&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j(\Omega-\frac{2\p
 \section{Transformation}
 \subsection{Rücktransformation}
 \begin{align}
-x[n]&=\int\limits_{-\pi}^\pi X\freqe^{j\omega n}d\omega 
+x[n]&=\int\limits_{-\pi}^\pi X\freq e^{j\omega n}d\omega 
 \end{align}
 \subsection{Zusammenhang $\Omega$ und $n$} \label{omegaToDescrete}
 ACHTUNG: Dieser zusammenhang ist in SSS etwas anders im gegensatz zu dem Hilfsblatt von DSS
@@ -439,7 +440,7 @@ S_{XY}\freq=\mathcal{F}\{r_{XY}(\kappa)\}=\sum\limits_{k=-\infty}^\infty r_{XY}(
 
 \section{Kohärenz (coherence)} \label{coherence}
 \begin{equation}
-	\rm{Coh}_{XY}\freq=\frac{\left|S_{XY}\freq\right|^2}{S_{XX}\freqS_{YY}\freq}
+	\rm{Coh}_{XY}\freq=\frac{\left|S_{XY}\freq\right|^2}{S_{XX}\freq S_{YY}\freq}
 \end{equation}
 \subsection{Eigenschaften der Kohärenz}
 Die Kohärenz zwischen den Zufallsprozessen $X(n)$ und $Y(n)$ besagt, wie gut $X$ zu $Y$ bei einer gegebenen Frequenz $\omega$ korrespondiert.
@@ -531,8 +532,8 @@ und $Y(n)$ ist \emph{stationär im weiteren Sinne} (\ref{stationary}) mit
 \begin{subequations}
 \begin{align}
 c_{YX}&=\sum\limits_{k=-\infty}^\infty h(k)c_{XX}(\kappa -k) \\
-C_{YX}\freq&=H\freqC_{XX}\freq\\
-c_{YX}&=\int\limits_{-\pi}^\pi H\freqC_{XX}\freqe^{-j\omega\kappa}\frac{d\omega}{2\pi}
+C_{YX}\freq &=H\freq C_{XX}\freq\\
+c_{YX}&=\int\limits_{-\pi}^\pi H\freq C_{XX}\freq e^{-j\omega\kappa}\frac{d\omega}{2\pi}
 \end{align}
 \end{subequations}
 
@@ -541,7 +542,7 @@ c_{YX}&=\int\limits_{-\pi}^\pi H\freqC_{XX}\freqe^{-j\omega\kappa}\frac{d\omega}
 \begin{align}
 c_{Y_1Y_2}(\kappa)&=\sum\limits_{k=-\infty}^\infty \sum\limits_{l=-\infty}^\infty h_1(k)h_2(l)\cdot c_{X_1X_2}(\kappa -k+l) \\
 c_{Y_1Y_2}(\kappa)&=h_1(\kappa)\star h_2(\kappa)^*\star c_{X_1X_2}(\kappa)\\
-C_{Y_1Y_2}\freq&=H_1\freqH_2\freq^*C_{X_1X_2}\freq
+C_{Y_1Y_2}\freq &=H_1\freq H_2\freq^*C_{X_1X_2}\freq
 \end{align}
 \end{subequations}
 
@@ -555,7 +556,7 @@ C_{YX}\freq&=C_{XX}\freq\prod\limits_{i=1}^L H_i\freq
 \end{subequations}
 \section{Matched Filter}
 
-\subsection{Annahmen}
+\subsection{Annahmen des Matched Filters}
 \begin{itemize}
   \item Das eingehende Signal $X(n)$ besteht entweder aus einem Signal mit Rauschen oder nur Rauschen:\begin{equation}
   X(n)=\begin{cases}
@@ -567,9 +568,72 @@ C_{YX}\freq&=C_{XX}\freq\prod\limits_{i=1}^L H_i\freq
   \item $E[V(n)]=0$ und $C_{VV}\freq$ bekannt
 \end{itemize}
 
+\subsection{Ziel des Matched Filters}
+Maximierung des Signal-Rausch-Verhältnis:
+\begin{equation}
+\left(\frac{S}{N}\right)=\max\frac{|s_0(n_0)|^2}{\E[V_0(n_0)^2]}
+\end{equation}
+
+\subsection{Übertragungsfunktion des Matched Filters}
+Sei $S\freq = \mathcal{F}\{s(n)\}$, $C_{VV}$ das Spektrum des Rauschens,
+ $n_0$ die Abtastunszeit, bei welcher $(S/N)$ berechnet wird, und $k$ eine reele Konstante
+\begin{equation}
+H\freq = k \frac{S\freq^*}{C_{VV}\freq}e^{-j\omega n_0}
+\end{equation}
+Dabei geht der Signalverlauf am Ende des Filters verloren und der Filter kann zur Signaldetektion genutzt werden
+\subsection{Matched Filter für Wei\ss es Rauschen}
+Bei wei\ss em Rauschen wird die Impulsantwort des Filters zu
+\begin{equation}
+h(n) \equiv c \cdot s(n_0 - n)
+\end{equation}
+$\Rightarrow$ Die Impulsantwort des Filters ist das bekannte Signal ''rückwärts gespielt'' und um $n_0$ verschoben\\
+Der Signal zu Rausch Abstand ergibt sich dann zu:
+\begin{equation}
+\left(\frac{S}{N}\right)_{out}=\frac{E_s}{\sigma_V^2}
+\end{equation}
+
+
 \section{Wiener Filter}
+\subsection{Ziel des Wiener Filters}
+Der Wiener Filter versucht die optimale Schätzung (nach (\ref{conv:mss})) eines Zufallsprozesses durch die Beobachtung eines anderen Prozesses
+\subsection{Annahmen des Wiener Filters}
+\includegraphics[width=\textwidth]{images/wienerfilter.JPG}
+\begin{itemize}
+  \item $X(n)$ ist der zu schätzende Zufallsprozess
+  \item $Y(n)$ ist der betrachtete Zufallsprozess
+  \item $\epsilon(n)$ ist der Fehlerprozess
+  \item $X(n)$ und $Y(n)$ sind reelwertig, mittelwertfrei und \emph{gemeinsam stationär im weiteren Sinne} (\ref{jointstationary})
+  \item Aufgrund der \emph{gemeinsamen Stationarität im weiteren Sinne} (\ref{jointstationary}) der beiden Prozesse ist die Impulsantwort
+  		$h(n)$ stabil und der Fehlerprozess $\epsilon(n)$ \emph{stationär im weiteren Sinne} (\ref{stationary})
+\end{itemize}
 
 
+\subsection{Die Übertragungsfunktion des Wiener Filters}
+Enstehend aus den \emph{Wiener-Hopf-Gleichungen}
+\begin{subequations}
+\begin{alignat}{2}
+c_{XY}(\kappa)&=h_{opt}(\kappa)\star C_{YY}(\kappa) \quad &\kappa \in \mathbb{Z} \\
+C_{XY}\freq &=G_{opt}\freq C_{YY}\freq \quad &\omega \in \mathbb{R}
+\end{alignat}
+\end{subequations}
+erlangt man die optimale Übertragungsfunktion:
+\begin{equation}
+H_{opt}\freq = \frac{C_{XY}\freq}{C_{YY}\freq}
+\end{equation}
+
+\subsection{Mean Square Error des Wiener Filters}
+\begin{subequations}
+\begin{align}
+q_{min}&=C_{XX}(0)-\sum\limits_{m=-\infty}^\infty h_{opt}(m)C_{XY}(m) \\
+q_{min}&=p(0) \quad \text{mit} \\
+p(\kappa) &= C_{XX}(\kappa)-h_{opt}(\kappa)\star c_{YX}(\kappa) \notag
+\end{align}
+\end{subequations}
+
+\subsection{Der Wiener Filter mit additivem Rasuchen}
+\begin{equation}
+H_{opt}\freq = \frac{C_{XX}\freq}{C_{XX}\freq + C_{VV}\freq}
+\end{equation}
 \chapter{Sonstiges}
 \section{Spezielle Funktionen}
 \subsection{Gaussian white noise process} \label{whitenoise}
@@ -588,5 +652,12 @@ S_{WW}(e^{j \omega})&=\sigma_W^2
 1 &\kappa = 0\\
 0 &\kappa \neq 0
 \end{cases}
+\end{equation}
+
+
+\section{Mathematische nützliche Formeln}
+\subsection{Ungleichung von Schwarz}
+\begin{equation}
+\left|\int\limits_a^b \varphi_1(\omega)\varphi_2(\omega)d\omega \right|^2\leq \left( \int\limits_a^b |\varphi_1(\omega)|^2 d\omega \right)\cdot\left( \int\limits_a^b |\varphi_2(\omega)|^2 d\omega \right)
 \end{equation}
 \end{document}
