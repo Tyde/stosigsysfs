@@ -22,7 +22,7 @@
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.8.4 - 24.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.8.5 - 24.09.2012}
 
 \maketitle
 \newpage
@@ -308,6 +308,11 @@ Falls $X$ zumindest \emph{stationär im weiteren Sinne}(\ref{stationary}) ist, gi
 c_{XX}(\kappa)=r_{XX}(\kappa)-(\E[X(n)])^2 
 \end{equation}
 
+\subsection{Kovarianz einer zusammengesetzten Funktion}
+Falls $Y(n)=X(n)+V(n)$ und $X(n)$ ist von $V(n)$ statistisch unabhängig, dann gilt:
+\begin{equation}
+c_{YY}(\kappa)=C_{XX}(\kappa)+C_{VV}(\kappa)
+\end{equation}
 \subsection{Überführung der Central-SOMF in die Varianz}
 \begin{equation}
 c_{XX}(0)=\Var(X)
@@ -327,6 +332,8 @@ Falls $X$ und $Y$ zumindest \emph{gemeinsam stationär im weiteren Sinne }(\ref{j
 \begin{equation}
 c_{XY}(\kappa)=r_{XY}(\kappa)-\E[X(n)]\E[Y(n)]
 \end{equation}
+
+
 \subsection{Unkorreliertheit (uncorrelated) anhand der Kreuzkovarianz}\label{uncorrelated}
 \begin{equation}
 	c_{XY}(\kappa)=0
