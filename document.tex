@@ -22,7 +22,7 @@
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.1 - 24.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.2 - 24.09.2012}
 
 \maketitle
 \newpage
@@ -562,6 +562,7 @@ c_{YY}(\kappa)&=\sum\limits_{k=-\infty}^\infty \sum\limits_{l=-\infty}^\infty h(
 \end{subequations}
 
 \subsection{Kreukovarianz des Ausgangs des Filters}
+Sei $X(n)$ das Eingangssignal und $Y(n)$ das Ausgangssignal
 \begin{subequations}
 \begin{align}
 c_{YX}&=\sum\limits_{k=-\infty}^\infty h(k)c_{XX}(\kappa -k) \\
@@ -570,7 +571,8 @@ c_{YX}&=\int\limits_{-\pi}^\pi H\freq C_{XX}\freq e^{-j\omega\kappa}\frac{d\omeg
 \end{align}
 \end{subequations}
 
-\subsection{Kreukovarianz des Ausgangs zweier Filter}
+\subsection{Kreukovarianz des Ausgangs zweier paralleler Filter}
+
 \begin{subequations}
 \begin{align}
 c_{Y_1Y_2}(\kappa)&=\sum\limits_{k=-\infty}^\infty \sum\limits_{l=-\infty}^\infty h_1(k)h_2(l)\cdot c_{X_1X_2}(\kappa -k+l) \\
