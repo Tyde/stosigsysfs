@@ -22,7 +22,7 @@
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.8.6 - 24.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9 - 24.09.2012}
 
 \maketitle
 \newpage
@@ -542,6 +542,21 @@ und $Y(n)$ ist \emph{stationär im weiteren Sinne} (\ref{stationary}) mit
 \mu_Y=\E[Y(n)]=\sum\limits_{k=-\infty}^\infty h(k)\E[X(n-k)]=\mu_XH(e^{j0})
 \end{equation}
 
+\subsection{Leistungsdichtespektrum des Ausgangs eines Filters}
+Sei die Übertragungsfunktion des Filters $H\freq=\frac{Y\freq}{X\freq}$, und das Leistungsdichtspektrum von $X(n)$ sei $S_{XX}\freq$, dann gilt:
+\begin{equation}
+S_{YY}\freq=|H\freq|^2S_{XX}\freq
+\end{equation}  
+
+\subsection{Spektrum/Kovarianz des Ausgangs eines Filters}
+Sei die Übertragungsfunktion des Filters $H\freq=\frac{Y\freq}{X\freq}$, und das Sepektrum von $X(n)$ sei $C_{XX}\freq$, dann gilt:
+\begin{subequations}
+\begin{align}
+C_{YY}\freq&=|H\freq|^2C_{XX}\freq\\
+c_{YY}(\kappa)&=\sum\limits_{k=-\infty}^\infty \sum\limits_{l=-\infty}^\infty h(k)h(l) \cdot c_{XX}(\kappa-k+1)
+\end{align}
+\end{subequations}
+
 \subsection{Kreukovarianz des Ausgangs des Filters}
 \begin{subequations}
 \begin{align}
@@ -694,6 +709,11 @@ S_{WW}(e^{j \omega})&=\sigma_W^2
 \int\limits_0^{2\pi} sin(k+nt) dt &= 0 \quad &\text{mit } k=const
 \end{alignat}
 \end{subequations}
+
+\subsection{Betragsquadrat komplexer Funktionen}
+\begin{equation}
+|H\freq|^2=H\freq H(e^{-j \omega})
+\end{equation}
 
 
 
