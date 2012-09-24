@@ -22,7 +22,7 @@
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9 - 24.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.1 - 24.09.2012}
 
 \maketitle
 \newpage
@@ -519,7 +519,8 @@ Das Spektrum eines Realen Zufallsprozesses ist komplett im Intervall $[0,\pi]$ b
 \chapter{Filter}
 \section{Lineare Filter}
 Wenn $X(n)$ und $Y(n)$ \emph{stationär} (\ref{stationarystrict}) sind, $h(n)$ eine Impulsantwort eines LTI-Systems ist
- und das Filter \emph{stabil} (\ref{Stability}) ist, existiert mit \emph{Wahrscheinlichkeit 1} (\ref{conv:one})
+ und das Filter \emph{stabil} (\ref{Stability}) ist, existiert mit \emph{Wahrscheinlichkeit eins} (\ref{conv:one})
+ das lineare Filter mit:
 \begin{equation} \label{eq:linfil}
 Y(n)=\sum\limits_{k=-\infty}^\infty h(k)X(n-k)=\sum\limits_{k=-\infty}^\infty h(n-k)X(k)
 \end{equation}
@@ -530,6 +531,7 @@ Die Stabilität eines Filters ist gegeben, wenn:
 \end{equation}
 
 \subsection{Eigenschaften eines Linearen Filters}
+Die folgenden Eigenschaften gelten nur, wenn das Filter \emph{stabil} (\ref{Stability}) ist
 \begin{itemize}
   \item Ist $X(n)$ \emph{stationär} (\ref{stationarystrict}) und $\E[|X(n)|]<\infty$, dann ist $Y(n)$ \emph{stationär}
   \item $Y(n)$ wird linearer Prozess genannt (linear process)
