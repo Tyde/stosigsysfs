@@ -679,6 +679,12 @@ p(\kappa) &= C_{XX}(\kappa)-h_{opt}(\kappa)\star c_{YX}(\kappa) \notag
 \end{align}
 \end{subequations}
 
+\subsection{Orthogonalitätsprinzip (Herleitung des Wiener Filters)}
+Zur minimierung des MSE setzt man das Fehlersignal $\epsilon_X(n)$ als unkorreliert mit dem beobachteten Eingangsignal $Y(n)$
+\begin{equation}
+C_{\epsilon_XY}(\kappa)=\E[\epsilon_X(n+\kappa)Y(n)]=0
+\end{equation}
+
 \subsection{Der Wiener Filter mit additivem Rasuchen}
 \begin{equation}
 H_{opt}\freq = \frac{C_{XX}\freq}{C_{XX}\freq + C_{VV}\freq}
