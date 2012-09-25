@@ -22,7 +22,7 @@
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.5.1 - 24.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.6 - 24.09.2012}
 
 \maketitle
 \newpage
@@ -665,6 +665,12 @@ H_{opt}\freq = \frac{C_{XY}\freq}{C_{YY}\freq}
 \end{equation}
 
 \subsection{Mean Square Error des Wiener Filters}
+Der Mean Square Error ist als der Erwartungswert des quadrates der Fehlerfunktion definiert
+\begin{align}
+q(h)&=\E[\epsilon_{X}^2(n)] \\
+h_{opt} &= \arg \min_h q(h) ,n\in \mathbb{Z}
+\end{align}
+Daraus folgt:
 \begin{subequations}
 \begin{align}
 q_{min}&=C_{XX}(0)-\sum\limits_{m=-\infty}^\infty h_{opt}(m)C_{XY}(m) \\
@@ -729,6 +735,9 @@ S_{WW}(e^{j \omega})&=\sigma_W^2
 |H\freq|^2=H\freq H(e^{-j \omega})
 \end{equation}
 
-
+\subsection{Doppelte Faltungssumme}
+\begin{equation}
+\sum\limits_{m=-\infty}^\infty \sum\limits_{k=-\infty}^\infty h(m)h(k)f(k-m) = h(n)\star f(0) \star h(-n)
+\end{equation}
 
 \end{document}
