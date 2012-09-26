@@ -23,7 +23,7 @@
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.8.1 - 26.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.8.2 - 26.09.2012}
 
 \maketitle
 \newpage
@@ -259,7 +259,7 @@ X_s(j\Omega)&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j(\Omega-\frac{2\p
 \section{Transformation}
 \subsection{Rücktransformation}
 \begin{align}
-x[n]&=\int\limits_{-\pi}^\pi X\freq e^{j\omega n}d\omega 
+x[n]&=\frac{1}{2\pi}\int\limits_{-\pi}^\pi X\freq e^{j\omega n}d\omega 
 \end{align}
 \subsection{Zusammenhang $\Omega$ und $n$} \label{omegaToDescrete}
 ACHTUNG: Dieser zusammenhang ist in SSS etwas anders im gegensatz zu dem Hilfsblatt von DSS
