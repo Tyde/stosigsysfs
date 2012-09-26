@@ -253,8 +253,8 @@ x_s(t)=\sum\limits_{n=-\infty}^\infty x_c(nT_s)\delta(t-nT_s)
 \subsection{Im Frequenzbereich}
 
 \begin{align}
-X_s(j\Omega)&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j(\Omega-\frac{2\pi k}{T_s})) \notag\\
-	&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j\Omega-kj\Omega_s) \quad \text{mit} \quad \Omega_s=\frac{2\pi}{T_s}\\
+X_s\freq&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j(\Omega-\frac{2\pi k}{T_s})) \notag\\
+	&=\frac{1}{T_s}\sum\limits_{k=-\infty}^\infty X_c(j\Omega-kj\Omega_s) \quad \text{mit} \quad \Omega_s=\frac{2\pi}{T_s} 
 \end{align}
 \section{Transformation}
 \subsection{Rücktransformation}
@@ -274,8 +274,8 @@ ACHTUNG: Dieser zusammenhang ist in SSS etwas anders im gegensatz zu dem Hilfsbl
 
 \subsection{Berechnen einer Übertragungsfunktion im zeitdiskreten Fall}
 \begin{enumerate}
-	\item Zeitkontinuierliches $H\freq=\frac{Y\freq}{X\freq}$ berechnen
-	\item Formel aus (\ref{omegaToDescrete}) einsetzen, um $H(j\Omega)$ zu erreichen
+	\item Zeitkontinuierliches $H(j\Omega)=\frac{Y(j\Omega)}{X(j\Omega)}$ berechnen
+	\item Formel aus (\ref{omegaToDescrete}) einsetzen, um $H\freq$ zu erreichen
 \end{enumerate}
 
 \section{Korrespondenzen, welche nicht auf der DSS-Formelsammlung enthalten sind}
