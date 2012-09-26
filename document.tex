@@ -23,7 +23,7 @@
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.6.2 - 25.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.7 - 26.09.2012}
 
 \maketitle
 \newpage
@@ -40,7 +40,21 @@
 Fehler und Verbesserungen bitte an studium@daniel-thiem.de senden oder als Issue bei \url{https://github.com/Tyde/stosigsysfs/issues} melden. 
 Der Quelltext dieser Formelsammlung ist auf \url{https://github.com/Tyde/stosigsysfs} und darf gerne erweitert werden.
 \chapter{Kombinatorik \& reine Stochastik}
-
+\section{Megenlehre}
+\begin{subequations}
+\begin{align}
+P(\overline{A\cup B})&=P(\overline{A} \cap \overline{B})\\
+P(\overline{A\cap B})&=P(\overline{A} \cup \overline{B}) \\
+P(A\cup (A \cap B))&=P(A) \\
+P(A\cap (A \cup B))&=P(A) \\
+P(\overline{\bar{A}})&=P(A) \\
+P\left(\bigcup\limits_{i=0}^n A_i\right)&=\sum\limits_{i=0}^n P(A_i)
+\end{align}
+\end{subequations}
+Falls $A$ und $B$ stochastisch unabhängig:
+\begin{equation}
+P(A\cap B)=P(A)\cdot P(B)
+\end{equation}
 \section{Wahrscheinlichkeitsdichtefunktion}
 Sei $F_X(x)$ die Verteilungsfunktion der Zufallsvariablen $X$
 \begin{equation}
