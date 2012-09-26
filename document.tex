@@ -23,7 +23,7 @@
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.7.2 - 26.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 0.9.8 - 26.09.2012}
 
 \maketitle
 \newpage
@@ -107,6 +107,13 @@ P(X>a)&=1-F(a)
 \begin{equation}
 f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2} \left(\frac{t-\mu}{\sigma}\right)^2}
 \end{equation}
+Erwartungswert und Varianz:
+\begin{subequations}
+\begin{align}
+\E[f(x)]&=\mu \\
+\Var[f(x)]&=\sigma^2
+\end{align}
+\end{subequations}
 
 \subsection{Rechteckverteilung}
 \begin{align}
@@ -120,6 +127,13 @@ F(x) &= \begin{cases}
 1 & x > b
 \end{cases}
 \end{align}
+Erwartungswert und Varianz:
+\begin{subequations}
+\begin{align}
+\E[f(x)]&=\frac{a+b}{2} \\
+\Var[f(x)]&=\frac{(b-a)^2}{12}
+\end{align}
+\end{subequations}
 
 \subsection{Exponentialverteilung}
 \begin{align}
@@ -132,6 +146,13 @@ F(x) &= \begin{cases}
 1-e^{-\lambda t} & x\geq 0
 \end{cases}
 \end{align}
+Erwartungswert und Varianz:
+\begin{subequations}
+\begin{align}
+\E[f(x)]&=\frac{1}{\lambda} \\
+\Var[f(x)]&=\frac{1}{\lambda^2}
+\end{align}
+\end{subequations}
 
 \section{Formel von Bayes}
 
