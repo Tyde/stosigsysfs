@@ -10,6 +10,7 @@
 \usepackage{lscape}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{trfsigns}
 \DeclareMathSizes{9.5}{9.5}{7}{7}
 \DeclareMathSizes{10}{10}{7}{7}
 \DeclareMathSizes{11}{11}{8}{8}
@@ -242,6 +243,15 @@ ACHTUNG: Dieser zusammenhang ist in SSS etwas anders im gegensatz zu dem Hilfsbl
 	\item Zeitkontinuierliches $H\freq=\frac{Y\freq}{X\freq}$ berechnen
 	\item Formel aus (\ref{omegaToDescrete}) einsetzen, um $H(j\Omega)$ zu erreichen
 \end{enumerate}
+
+\section{Korrespondenzen, welche nicht auf der DSS-Formelsammlung enthalten sind}
+\subsection{Trigonometrische Funktionen im Frequenzbereich}
+\begin{subequations}
+\begin{align}
+\rm{cos}(\omega)\quad &\Laplace\quad \frac{1}{2} (\delta(n-1) + \delta(n+1)) \\
+\rm{sin}(\omega)\quad &\Laplace\quad \frac{j}{2} (\delta(n-1) - \delta(n+1))
+\end{align}
+\end{subequations}
 \chapter{Prozesse}
 
 \section{Strikte Stationarität} \label{stationarystrict}
