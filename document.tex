@@ -23,7 +23,7 @@
 
 \title{Stochastische Signale und Systeme}
 \subtitle{Zusammenfassung Formeln}
-\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 1.0 - 27.09.2012}
+\subsubtitle{Autor: Daniel Thiem - studium@daniel-thiem.de\\Version 1.1 - 15.02.2013}
 
 \maketitle
 \newpage
@@ -244,7 +244,7 @@ P \left(\lim_{k\rightarrow\infty} |X_k-X|=0\right)=1
 \end{itemize}
 \chapter{Discrete-Time-Fourier-Transformation}
 
-\section{Abtastung}
+\section{Abtastung} \label{fouriersampling}
 \subsection{Im Zeitbereich}
 Sei $x_c(t)$ das zu abtastende Signal und $T_s=\frac{1}{f_s}$ die Abtastdauer bzw. Abtastfrequenz
 \begin{equation}
@@ -627,7 +627,7 @@ c_{YX}&=\int\limits_{-\pi}^\pi H\freq C_{XX}\freq e^{-j\omega\kappa}\frac{d\omeg
 
 \begin{subequations}
 \begin{align}
-c_{Y_1Y_2}(\kappa)&=\sum\limits_{k=-\infty}^\infty \sum\limits_{l=-\infty}^\infty h_1(k)h_2(l)\cdot c_{X_1X_2}(\kappa -k+l) \\
+c_{Y_1Y_2}(\kappa)&=\sum\limits_{k=-\infty}^\infty \sum\limits_{l=-\infty}^\infty h_1(k)h_2(l)^*\cdot c_{X_1X_2}(\kappa -k+l) \\
 c_{Y_1Y_2}(\kappa)&=h_1(\kappa)\star h_2(\kappa)^*\star c_{X_1X_2}(\kappa)\\
 C_{Y_1Y_2}\freq &=H_1\freq H_2\freq^*C_{X_1X_2}\freq
 \end{align}
